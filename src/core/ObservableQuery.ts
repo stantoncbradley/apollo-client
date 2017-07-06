@@ -196,6 +196,16 @@ export class ObservableQuery<T> extends Observable<ApolloQueryResult<T>> {
     return this.lastResult;
   }
 
+  public clearLastResult(): void {
+    const clearedResult: ApolloQueryResult<any> = {
+      data: {},
+      loading: false,
+      networkStatus: 7,
+      stale: false,
+    };
+    this.lastResult = clearedResult;
+  }
+
   public refetch(variables?: any): Promise<ApolloQueryResult<T>> {
     this.variables = {
       ...this.variables,

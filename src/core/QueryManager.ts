@@ -824,7 +824,7 @@ export class QueryManager {
     const observableQueryPromises: Promise<ApolloQueryResult<any>>[] = [];
     Object.keys(this.observableQueries).forEach((queryId) => {
       const storeQuery = this.reduxRootSelector(this.store.getState()).queries[queryId];
-
+      this.observableQueries[queryId].observableQuery.clearLastResult();
       const fetchPolicy = this.observableQueries[queryId].observableQuery.options.fetchPolicy;
 
       if (fetchPolicy !== 'cache-only' && fetchPolicy !== 'standby') {
